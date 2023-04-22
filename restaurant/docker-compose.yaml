@@ -1,0 +1,27 @@
+version: "3.9"
+services:
+  app:
+    build: .
+    volumes:
+     - .:/app
+    ports:
+     - 8000:8000
+    container_name: django_container
+    command: > 
+      sh -c "python manage.py migrate&&
+      python manage.py runserver 0.0.0.0:8000"
+    depends_on:
+      - posgre
+  posgre:
+    image: postgres:14
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    container_name: posgre
+    environment:
+      - POSTGRES_DB=API
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres 
+    ports:
+      - 5432:5432
+volumes:
+  postgres_data:
