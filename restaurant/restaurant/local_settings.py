@@ -4,7 +4,7 @@ DATABASES = {
         'NAME': 'API',
         'USER': 'postgres',
         'PASSWORD': 'postgres',
-        'HOST': 'posgre',
+        'HOST': 'localhost',
         'PORT': '5432',
         }
     }
